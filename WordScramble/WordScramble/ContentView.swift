@@ -29,6 +29,7 @@ struct ContentView: View {
                 Text("Footer")
             }
         }
+        .listStyle(.grouped)
     }
 }
 
