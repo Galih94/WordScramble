@@ -32,6 +32,14 @@ struct ContentView: View {
         let trimmedInput = input.trimmingCharacters(in: .whitespaces) // "abc"
     }
     
+    private func checkString() {
+        let word =  "swift"
+        let checker = UITextChecker()
+        let range = NSRange(location: 0, length: word.utf16.count)
+        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        let result = misspelledRange.location == NSNotFound
+    }
+    
     private func testBundle() {
         if let fileURL = Bundle.main.url(forResource: "nameFIle", withExtension: "txt") {
             if let file = try? String(contentsOf: fileURL) {
