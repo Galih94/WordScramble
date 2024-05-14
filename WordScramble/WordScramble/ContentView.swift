@@ -10,8 +10,11 @@ import SwiftUI
 struct ContentView: View {
     var names = ["Galih", "Samodra", "Wicaksono"]
     var body: some View {
-        List(names, id: \.self) {
-            Text("Hello, world! \($0)")
+        List {
+            Text("Hello, world! ")
+            ForEach(names, id: \.self) {
+                Text("Hello, world! \($0)")
+            }
         }
         .listStyle(.grouped)
     }
