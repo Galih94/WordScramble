@@ -10,9 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         List {
-            Text("Hello, world!")
-            Text("Hello, world!")
-            Text("Hello, world!")
+            ForEach(0..<5) {
+                Text("Hello, world! \($0)")
+            }
         }
     }
 }
