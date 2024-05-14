@@ -18,6 +18,14 @@ struct ContentView: View {
         }
         .listStyle(.grouped)
     }
+    
+    private func testBundle() {
+        if let fileURL = Bundle.main.url(forResource: "nameFIle", withExtension: "txt") {
+            if let file = try? String(contentsOf: fileURL) {
+                // loaded fileURL into string
+            }
+        }
+    }
 }
 
 #Preview {
