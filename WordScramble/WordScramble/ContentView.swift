@@ -29,6 +29,7 @@ struct ContentView: View {
         """
         let letters2 = input2.components(separatedBy: "\n") // ["a", "b", "c"]
         let randomLetter = letters.randomElement() ?? "not found" // "a"
+        let trimmedInput = input.trimmingCharacters(in: .whitespaces) // "abc"
     }
     
     private func testBundle() {
