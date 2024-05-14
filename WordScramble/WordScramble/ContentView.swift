@@ -22,6 +22,12 @@ struct ContentView: View {
     private func testString() {
         let input = "a b c"
         let letters = input.components(separatedBy: " ")
+        let input2 = """
+        a
+        b
+        c
+        """
+        let letters2 = input2.components(separatedBy: "\n")
     }
     
     private func testBundle() {
