@@ -19,6 +19,11 @@ struct ContentView: View {
         .listStyle(.grouped)
     }
     
+    private func testString() {
+        let input = "a b c"
+        let letters = input.components(separatedBy: " ")
+    }
+    
     private func testBundle() {
         if let fileURL = Bundle.main.url(forResource: "nameFIle", withExtension: "txt") {
             if let file = try? String(contentsOf: fileURL) {
