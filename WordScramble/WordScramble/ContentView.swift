@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    var names = ["Galih", "Samodra", "Wicaksono"]
     @State private var usedWords = [String]()
     @State private var rootWord = ""
     @State private var newWord = ""
+    
+    @State private var alertTitle = ""
+    @State private var alertMsg = ""
+    @State private var alertShowing = false
+    
     var body: some View {
         NavigationStack {
             List {
@@ -33,6 +37,11 @@ struct ContentView: View {
             .onAppear(perform: {
                 startGame()
             })
+            .alert(alertTitle, isPresented: $alertShowing) {
+                Button("OK") {}
+            } message: {
+                Text(alertMsg)
+            }
         }
     }
     
@@ -59,6 +68,13 @@ struct ContentView: View {
             fatalError("Could not find any word inside start.txt from bundle.")
         }
         
+    }
+    
+    // MARK: Alert
+    private func showAlert(title: String, message: String) {
+        alertTitle = title
+        alertMsg = message
+        alertShowing = true
     }
     
     // MARK: Validation
