@@ -49,7 +49,21 @@ struct ContentView: View {
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         guard !answer.isEmpty else { return }
         
-        // more validation here
+        guard isOriginalWord(answer) else {
+            showAlert(title: "Error Original Word", message: "`\(answer)` has been added")
+            return
+        }
+        
+        guard isPossibleWord(answer) else {
+            showAlert(title: "Error Possible Word", message: "`\(answer)` cannot be spelled from word `\(rootWord)`")
+            return
+        }
+        
+        guard isRealWord(answer) else {
+            showAlert(title: "Error Real Word", message: "`\(answer)` is not a real world")
+            return
+        }
+        
         withAnimation {
             usedWords.insert(answer, at: 0)
             newWord = ""
