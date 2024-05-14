@@ -28,6 +28,7 @@ struct ContentView: View {
         c
         """
         let letters2 = input2.components(separatedBy: "\n")
+        let randomLetter = letters.randomElement() ?? "not found"
     }
     
     private func testBundle() {
