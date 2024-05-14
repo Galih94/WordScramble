@@ -38,9 +38,10 @@ struct ContentView: View {
         guard !answer.isEmpty else { return }
         
         // more validation here
-        
-        usedWords.insert(answer, at: 0)
-        newWord = ""
+        withAnimation {
+            usedWords.insert(answer, at: 0)
+            newWord = ""
+        }
     }
 }
 
