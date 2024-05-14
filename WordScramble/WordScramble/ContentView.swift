@@ -21,14 +21,14 @@ struct ContentView: View {
     
     private func testString() {
         let input = "a b c"
-        let letters = input.components(separatedBy: " ")
+        let letters = input.components(separatedBy: " ") // ["a", "b", "c"]
         let input2 = """
         a
         b
         c
         """
-        let letters2 = input2.components(separatedBy: "\n")
-        let randomLetter = letters.randomElement() ?? "not found"
+        let letters2 = input2.components(separatedBy: "\n") // ["a", "b", "c"]
+        let randomLetter = letters.randomElement() ?? "not found" // "a"
     }
     
     private func testBundle() {
