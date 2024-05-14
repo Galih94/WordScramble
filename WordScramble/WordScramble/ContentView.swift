@@ -60,6 +60,31 @@ struct ContentView: View {
         }
         
     }
+    
+    // MARK: Validation
+    private func isOriginalWord(_ word: String) -> Bool {
+        return !usedWords.contains(word)
+    }
+    
+    private func isPossibleWord(_ word: String) -> Bool {
+        var tempWord = rootWord
+        for letter in word {
+            if let index = tempWord.firstIndex(of: letter) {
+                tempWord.remove(at: index)
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+    
+    private func isRealWord(_ word: String) -> Bool {
+        let checker = UITextChecker()
+        let range = NSRange(location: 0, length: word.utf16.count)
+        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        
+        return misspelledRange.location == NSNotFound
+    }
 }
 
 #Preview {
