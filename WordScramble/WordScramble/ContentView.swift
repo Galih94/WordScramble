@@ -19,18 +19,13 @@ struct ContentView: View {
             }
             
             Section("Section 2") {
-                Text("Header")
                 ForEach(0..<2) {
                     Text("Hello, world! \($0)")
                 }
-                Text("Footer")
             }
             
             Section("Section 3") {
                 Text("Header")
-                ForEach(0..<1) {
-                    Text("Hello, world! \($0)")
-                }
                 Text("Footer")
             }
         }
