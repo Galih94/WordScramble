@@ -21,8 +21,11 @@ struct ContentView: View {
                         .textInputAutocapitalization(.never)
                 }
                 Section {
-                    ForEach(usedWords, id: \.self) {
-                        Text($0)
+                    ForEach(usedWords, id: \.self) { word in
+                        HStack {
+                            Image(systemName: "\(word.count).circle")
+                            Text(word)
+                        }
                     }
                 }
             }
