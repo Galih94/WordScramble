@@ -9,43 +9,34 @@ import SwiftUI
 
 struct ContentView: View {
     var names = ["Galih", "Samodra", "Wicaksono"]
+    @State private var usedWords = [String]()
+    @State private var rootWord = ""
+    @State private var newWord = ""
     var body: some View {
-        List {
-            Text("Hello, world! ")
-            ForEach(names, id: \.self) {
-                Text("Hello, world! \($0)")
+        NavigationStack {
+            List {
+                Section {
+                    TextField("Enter your word", text: $newWord)
+                        .onSubmit(addNewWord)
+                }
+                Section {
+                    ForEach(usedWords, id: \.self) {
+                        Text($0)
+                    }
+                }
             }
         }
-        .listStyle(.grouped)
+        .navigationTitle(rootWord)
     }
     
-    private func testString() {
-        let input = "a b c"
-        let letters = input.components(separatedBy: " ") // ["a", "b", "c"]
-        let input2 = """
-        a
-        b
-        c
-        """
-        let letters2 = input2.components(separatedBy: "\n") // ["a", "b", "c"]
-        let randomLetter = letters.randomElement() ?? "not found" // "a"
-        let trimmedInput = input.trimmingCharacters(in: .whitespaces) // "abc"
-    }
-    
-    private func checkString() {
-        let word =  "swift"
-        let checker = UITextChecker()
-        let range = NSRange(location: 0, length: word.utf16.count)
-        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
-        let result = misspelledRange.location == NSNotFound
-    }
-    
-    private func testBundle() {
-        if let fileURL = Bundle.main.url(forResource: "nameFIle", withExtension: "txt") {
-            if let file = try? String(contentsOf: fileURL) {
-                // loaded fileURL into string
-            }
-        }
+    private func addNewWord() {
+        let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !answer.isEmpty else { return }
+        
+        // more validation here
+        
+        usedWords.insert(answer, at: 0)
+        newWord = ""
     }
 }
 
