@@ -60,7 +60,12 @@ struct ContentView: View {
         }
         
         guard isRealWord(answer) else {
-            showAlert(title: "Error Real Word", message: "`\(answer)` is not a real world")
+            showAlert(title: "Error Real Word", message: "`\(answer)` is not a real word")
+            return
+        }
+        
+        guard isWordTooShort(answer) else {
+            showAlert(title: "Error Short Word", message: "`\(answer)` is too short for an answer word")
             return
         }
         
@@ -114,6 +119,10 @@ struct ContentView: View {
         let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
         
         return misspelledRange.location == NSNotFound
+    }
+    
+    private func isWordTooShort(_ word: String) -> Bool {
+        return word.count >= 3
     }
 }
 
