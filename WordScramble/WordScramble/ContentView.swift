@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var usedWords = [String]()
     @State private var rootWord = ""
     @State private var newWord = ""
+    @State private var score = 0
     
     @State private var alertTitle = ""
     @State private var alertMsg = ""
@@ -38,9 +39,15 @@ struct ContentView: View {
                 startGame()
             })
             .toolbar(content: {
-                Button("New Game") {
-                    startGame()
-                    resetUsedWords()
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("Score: \(score)")
+                        .font(.title3)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("New Game") {
+                        resetGame()
+                        startGame()
+                    }
                 }
             })
             .alert(alertTitle, isPresented: $alertShowing) {
@@ -83,6 +90,7 @@ struct ContentView: View {
         withAnimation {
             usedWords.insert(answer, at: 0)
             newWord = ""
+            score += answer.count
         }
     }
     
@@ -100,8 +108,9 @@ struct ContentView: View {
         
     }
     
-    private func resetUsedWords() {
+    private func resetGame() {
         usedWords = []
+        score = 0
     }
     
     // MARK: Alert
