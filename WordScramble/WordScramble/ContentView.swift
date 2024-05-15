@@ -37,6 +37,12 @@ struct ContentView: View {
             .onAppear(perform: {
                 startGame()
             })
+            .toolbar(content: {
+                Button("New Game") {
+                    startGame()
+                    resetUsedWords()
+                }
+            })
             .alert(alertTitle, isPresented: $alertShowing) {
                 Button("OK") {}
             } message: {
@@ -92,6 +98,10 @@ struct ContentView: View {
             fatalError("Could not find any word inside start.txt from bundle.")
         }
         
+    }
+    
+    private func resetUsedWords() {
+        usedWords = []
     }
     
     // MARK: Alert
