@@ -69,6 +69,11 @@ struct ContentView: View {
             return
         }
         
+        guard isTheSameAsRootWord(answer) else {
+            showAlert(title: "Error Same Word", message: "answer `\(answer)` is same as word `\(rootWord)`")
+            return
+        }
+        
         withAnimation {
             usedWords.insert(answer, at: 0)
             newWord = ""
@@ -119,6 +124,10 @@ struct ContentView: View {
         let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
         
         return misspelledRange.location == NSNotFound
+    }
+    
+    private func isTheSameAsRootWord(_ word: String) -> Bool {
+        return word != rootWord
     }
     
     private func isWordTooShort(_ word: String) -> Bool {
