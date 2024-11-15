@@ -31,7 +31,7 @@ The source learning is from 5th project of course "100 Days of SwiftUI" (https:/
      - The answer list is cleared.
      - The score is reset to zero.
 
-# WeSplit – Image Comments Feature
+# WordScramble – Image Comments Feature
 ![Image Main UI](image-main-ui.png)
 ---
 
